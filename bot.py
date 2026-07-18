@@ -90,5 +90,19 @@ app = Application.builder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_handler))
 
+from flask import Flask
+from threading import Thread
+
+web_app = Flask(__name__)
+
+@web_app.route("/")
+def home():
+    return "Bot ishlayapti!"
+
+def run_web():
+    web_app.run(host="0.0.0.0", port=10000)
+
+Thread(target=run_web).start()
+
 print("Bot ishga tushdi...")
 app.run_polling()
