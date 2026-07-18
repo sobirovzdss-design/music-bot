@@ -62,10 +62,10 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"🔗 {video['webpage_url']}"
             )
 
-        except Exception:
-            await update.message.reply_text(
-                "❌ Qo'shiq topilmadi."
-            )
+        except Exception as e:
+    await update.message.reply_text(
+        f"❌ Xato: {e}"
+    )
 
         context.user_data["music_search"] = False
 
